@@ -60,6 +60,19 @@ function hapusError(input) {
     }
 }
 
+function initEditConfirm() {
+        document.addEventListener("submit", function (e) {
+            const form = e.target;
+            if (!form.classList.contains("form-edit")) return;
+
+            if (e.defaultPrevented) return;
+
+            if (!confirm("Simpan perubahan data ini?")) {
+                e.preventDefault();
+            }
+        });
+    }
+
 function initValidasiForm() {
     const form = document.getElementById("form-tambah");
     if (!form) return;
@@ -115,5 +128,6 @@ document.addEventListener("DOMContentLoaded", function () {
     initNavToggle();
     initHapusConfirm();
     initTableFilter();
+    initEditConfirm();
     initValidasiForm();
 });
